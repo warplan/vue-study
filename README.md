@@ -1,8 +1,6 @@
-## Vue官网教程中的疑难点
+主要摘录一些vue教程中的一些疑难点，结合加入的一些代码片段加深概念的理解（**持续更新！**）
 
-主要摘录一些vue教程中的一些疑难点，结合加入的一些代码片段加深概念的理解（持续更新！）
-
-### **箭头函数**在vue中使用，应注意this的指向
+# **箭头函数**在vue中使用，应注意this的指向
 
 不要在选项属性或回调上使用箭头函数
 
@@ -48,7 +46,7 @@ function foo() {
 }
 ```
 
-### inheritAttrs $attrs
+# inheritAttrs $attrs
 
 这两个API都是vue2.4.0新增的，教程解释的不是很清楚，结合例子理解
 
@@ -57,7 +55,7 @@ $attrs包含的就是父作用域的特性绑定（除了props定义的之外）
 
 ```javascript
 Vue.component('component-demo', {
-    inheritAttrs: true,
+    inheritAttrs: true, // 设置true或false
     props: ['label', 'value'],
     template: `
         <div>
@@ -75,10 +73,18 @@ var vueDemo = new Vue({ el: '#app-demo' })
 ```
 ```html
 <div id="app-demo">
-	<component-demo label="父作用域" value="" name="组件" placeholder="请输入"></component-demo>
+  <component-demo label="父作用域" value="" name="组件" placeholder="请输入"></component-demo>
+</div>
+<!-- 设置为true时: -->
+<div name="组件" placeholder="请输入">
+  <input placeholder="请输入">
+</div>
+<!-- 设置为false时: -->
+<div>
+  <input placeholder="请输入">
 </div>
 ```
 
-#####
+#
 
 
