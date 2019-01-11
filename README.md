@@ -14,7 +14,6 @@ key points and difficulties of vue guide
 	        console.log('a is: ' + this.a) // a is: 1
 	    }
 	})
-
 	var a = '123';
 	var vm2 = new Vue({
 	    data: {
@@ -36,7 +35,6 @@ key points and difficulties of vue guide
 	    console.log('id:', this.id);
 	  }, 100);
 	}
-
 	// ES5
 	function foo() {
 	  var _this = this;
