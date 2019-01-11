@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>箭头函数</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+</head>
+<script type="text/javascript">
+var vm1 = new Vue({
+    data: {
+        a: 1
+    },
+    created: function() {
+        // `this` 指向 vm 实例
+        console.log('a is: ' + this.a) // a is: 1
+    }
+})
+
+var a = '123';
+var vm2 = new Vue({
+    data: {
+        a: 1
+    },
+    created: () => {
+        // `this` 指向 window
+        console.log('a is: ' + this.a) // a is: 123
+    }
+})
+
+</script>
+
+<body>
+</body>
+
+</html>

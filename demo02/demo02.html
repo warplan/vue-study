@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>inheritAttrs和$attrs</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+</head>
+<script type="text/javascript">
+Vue.component('component-demo', {
+    inheritAttrs: true,
+    props: ['label', 'value'],
+    template: `
+        <div>
+            <input 
+                :value="$attrs.value" 
+                :placeholder="$attrs.placeholder"
+                @input="$emit('input', $event.target.value)"
+            >
+            {{$attrs}}
+        </div>
+    `
+})
+</script>
+
+<body>
+    <div id="app-demo">
+        <component-demo label="父作用域" value="" name="组件" placeholder="请输入"></component-demo>
+    </div>
+    <script>
+    var vueDemo = new Vue({ el: '#app-demo' })
+    </script>
+</body>
+
+</html>
