@@ -48,8 +48,11 @@ function foo() {
 
 # inheritAttrs $attrs
 
-这两个API都是vue2.4.0新增的，教程解释的不是很清楚(([demo02](https://github.com/warplan/vue-study/blob/master/demo01/demo02.html))
-)，inheritAttrs属性默认为true时，子组件的根元素会继承父作用域下（除却props定义）的属性，设置为false，子组件的根元素不会继承父作用域的属性（除class和style外）
+这两个API都是vue2.4.0新增的，教程解释的不是很清楚([demo02](https://github.com/warplan/vue-study/blob/master/demo01/demo02.html)
+)
+
+inheritAttrs属性默认为true时，子组件的根元素会继承父作用域下（除却props定义）的属性，设置为false，子组件的根元素不会继承父作用域的属性（除class和style外）
+
 $attrs包含的就是父作用域的特性绑定（除了props定义的之外）
 
 ```javascript
