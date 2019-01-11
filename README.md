@@ -4,7 +4,7 @@ key points and difficulties of vue guide
 
 ### **箭头函数**在vue中使用，应注意this的指向
 
-、、、
+```javascript
 	var vm1 = new Vue({
 	    data: {
 	        a: 1
@@ -14,6 +14,7 @@ key points and difficulties of vue guide
 	        console.log('a is: ' + this.a) // a is: 1
 	    }
 	})
+
 	var a = '123';
 	var vm2 = new Vue({
 	    data: {
@@ -24,11 +25,11 @@ key points and difficulties of vue guide
 	        console.log('a is: ' + this.a) // a is: 123
 	    }
 	})
-、、、
+```
 
 箭头函数是没有this的，this是根据父级的上下文且是静态生成的
 
-、、、
+```javascript
 	// ES6
 	function foo() {
 	  setTimeout(() => {
@@ -43,4 +44,4 @@ key points and difficulties of vue guide
 	    console.log('id:', _this.id);
 	  }, 100);
 	}
-、、、
+```
