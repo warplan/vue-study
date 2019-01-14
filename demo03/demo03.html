@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>mixins</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.21/vue.js"></script>
+</head>
+<script>
+var mixin01 = {
+	created() {
+		console.log('mixin01')
+	},
+	data() {
+		return {
+			name: 'mixin01'
+		}
+	},
+    methods: {
+        foo: function() {
+            console.log('foo1')
+        },
+        conflicting: function() {
+            console.log('from mixin1')
+        }
+    }
+}
+
+var mixin02 = {
+	created() {
+		console.log('mixin02')
+	},
+	data() {
+		return {
+			name: 'mixin02' 
+		}
+	},
+    methods: {
+        foo: function() {
+            console.log('foo2')
+        },
+        conflicting: function() {
+            console.log('from mixin2')
+        }
+    }
+}
+
+var vm = new Vue({
+    mixins: [mixin01, mixin02],
+    created() {
+    	console.log('vm')
+    },
+    methods: {
+        bar: function() {
+            console.log('bar')
+        },
+        conflicting: function() {
+            console.log('from self')
+        }
+    }
+})
+
+// 页面执行时，依次会打印'mixin01','mixin02','vm'
+vm.name // 'mixin02'
+vm.foo() // 'foo2'
+vm.bar() // 'bar'
+
+</script>
+
+<body>
+</body>
+
+</html>

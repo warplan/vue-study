@@ -48,11 +48,8 @@ function foo() {
 
 # inheritAttrs $attrs
 
-这两个API都是vue2.4.0新增的，教程解释的不是很清楚([demo02](https://github.com/warplan/vue-study/blob/master/demo01/demo02.html)
-)
-
+这两个API都是vue2.4.0新增的，教程解释的不是很清楚([demo02](https://github.com/warplan/vue-study/blob/master/demo02/demo02.html))
 inheritAttrs属性默认为true时，子组件的根元素会继承父作用域下（除却props定义）的属性，设置为false，子组件的根元素不会继承父作用域的属性（除class和style外）
-
 $attrs包含的就是父作用域的特性绑定（除了props定义的之外）
 
 ```javascript
@@ -90,6 +87,67 @@ var vueDemo = new Vue({ el: '#app-demo' })
 </div>
 ```
 
-#
+# mixins
+
+mixins接受一个混入对象的数组，实现一个类似浅拷贝的功能。利用mixins可以对组件代码进行抽离及封装。(注：如果传入的是钩子函数，则按照数组的顺序依次执行钩子函数，且会在组件之前执行,跟浅拷贝的顺序有出入)
+```javascript
+var mixin01 = {
+  created() {
+    console.log('mixin01')
+  },
+  data() {
+    return {
+      name: 'mixin01'
+    }
+  },
+    methods: {
+        foo: function() {
+            console.log('foo1')
+        },
+        conflicting: function() {
+            console.log('from mixin1')
+        }
+    }
+}
+
+var mixin02 = {
+  created() {
+    console.log('mixin02')
+  },
+  data() {
+    return {
+      name: 'mixin02' 
+    }
+  },
+    methods: {
+        foo: function() {
+            console.log('foo2')
+        },
+        conflicting: function() {
+            console.log('from mixin2')
+        }
+    }
+}
+
+var vm = new Vue({
+    mixins: [mixin01, mixin02],
+    created() {
+      console.log('vm')
+    },
+    methods: {
+        bar: function() {
+            console.log('bar')
+        },
+        conflicting: function() {
+            console.log('from self')
+        }
+    }
+})
+
+// 页面执行时，依次会打印'mixin01','mixin02','vm'
+vm.name // 'mixin02'
+vm.foo() // 'foo2'
+vm.bar() // 'bar'
+```
 
 
