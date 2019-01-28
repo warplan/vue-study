@@ -152,7 +152,76 @@ vm.bar() // 'bar'
 
 # transition
 
-Vue已经封装好了transition的组件，通过在transition组件上添加name，Vue会根据动画的过程自动添加扩展的class
+Vue已经封装好了transition的组件，通过在transition组件上添加name，Vue会根据动画的过程自动添加扩展的class。所以结合animation.css和扩展的class，可以轻松实现过渡的动画效果
 ![image](https://cn.vuejs.org/images/transition.png)
+
+```html
+<style>
+  body {
+    background: #ccc;
+  }
+  .sider {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 200px;
+    height: 100%;
+    background: #fff;
+  }
+
+  .sider-enter-active {
+    animation: fadeInRight 0.5s;
+  }
+
+  .sider-leave-active {
+    animation: fadeOutRight 0.5s;
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+    }
+
+    to {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes fadeOutRight {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+</style>
+<body>
+  <div id="app">
+    <button @click="show = !show">Click Me</button>
+    <transition name="sider">
+      <div class="sider" v-show="show"><h1>我是侧边栏</h1></div>
+    </transition>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          show: false
+        }
+      }
+    })
+  </script>
+</body>
+```
+
 
 
