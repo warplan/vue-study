@@ -150,4 +150,9 @@ vm.foo() // 'foo2'
 vm.bar() // 'bar'
 ```
 
+# transition
+
+Vue已经封装好了transition的组件，通过在transition组件上添加name，Vue会根据动画的过程自动添加扩展的class
+![image](https://cn.vuejs.org/images/transition.png)
+
 
